@@ -127,15 +127,14 @@
                     transition: background-color 0.5s, color 0.5s;
                 }
             }
+        }
+    }
 
-            i {
-                cursor: pointer;
-                &:hover {
-                    color: #33a3ff;
-                    transition: background-color 0.5s, color 0.5s;
-                }
-            }
-
+    .carrito-contenedor {
+        cursor: pointer;
+        &:hover {
+            color: #33a3ff;
+            transition: background-color 0.5s, color 0.5s;
         }
     }
 

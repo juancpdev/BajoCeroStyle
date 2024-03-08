@@ -137,7 +137,7 @@ function carrito() {
     const carritoCerrar = document.getElementById("cerrarCarrito");
     const btnAgregarCarrito = document.querySelectorAll(".boton_comprar");
     const contenedorProductos = document.querySelector(".carrito-ul");
-
+    
 
     let articulosCarrito = [];
     
@@ -151,6 +151,7 @@ function carrito() {
         icono.addEventListener("click", abrirCarrito);
     }); 
 
+    
     carritoCerrar.addEventListener("click", cerrarCarrito);
 
     function eliminarProducto(e) {
@@ -172,6 +173,8 @@ function carrito() {
 
         document.body.appendChild(fondoOverlay);
         document.body.classList.add('no-scroll');
+
+        fondoOverlay.addEventListener("click", cerrarCarrito);
     }
 
     function cerrarCarrito() {
