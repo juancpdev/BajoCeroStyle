@@ -1,0 +1,246 @@
+@use 'variables' as v;
+
+/** Media Queries **/
+@mixin telefono {
+    @media (min-width: v.$telefono) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (min-width: v.$tablet) {
+        @content;
+    }
+}
+@mixin tabletXL {
+    @media (min-width: v.$tabletXL) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: v.$desktop) {
+        @content;
+    }
+}
+@mixin desktopXL {
+    @media (min-width: v.$desktopXL) {
+        @content;
+    }
+}
+@mixin desktopXXL {
+    @media (min-width: v.$desktopXXL) {
+        @content;
+    }
+}
+
+@mixin boton($bgColor, $colorTexto : white) {
+    background-color: $bgColor;
+    padding: 1rem 4rem;
+    color: $colorTexto;
+    font-size: 1.8rem;
+    font-weight: 700;
+    border: none;
+    transition-property: background-color;
+    transition-duration: .3s;
+    text-align: center;
+    display: inline-block;
+
+    &:hover {
+        background-color: darken( $bgColor, 7% );
+        cursor: pointer;
+    }
+}
+
+@mixin boton2($bgColor, $colorTexto : white) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    border: none;
+    cursor: pointer;
+    background-color: $bgColor;
+    color: $colorTexto;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+    transition: all .3s ease-in-out;
+    text-align: center;
+
+    &:hover {
+        transform: scale(.985);
+        background-color: darken($bgColor, 10);
+    }
+}
+
+@mixin grid($columnas, $espaciado ) {
+    display: grid;
+    gap: $espaciado;
+    grid-template-columns: repeat($columnas, 1fr);
+}
+
+@mixin contenedor {
+    width: min(95%, 120rem);
+    margin: 0 auto;
+}
+
+@mixin contenedor-md {
+    width: min(95%, 80rem);
+    margin: 0 auto;
+}
+
+@mixin contenedor-sm {
+    width: min(95%, 60rem);
+    margin: 0 auto;
+}
+
+@mixin headings {
+    font-family: v.$fuente_principal;
+    font-weight: v.$black;
+    margin: 2rem 0;
+}
+
+@mixin nombre-pagina {
+    @include headings;
+    margin: 6rem 0 3rem 0;
+    text-align: center;
+}
+
+@mixin descripcion-pagina {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: v.$delgada;
+    color: v.$gris-oscuro;
+    margin-bottom: 5rem;
+}
+
+@mixin logo {
+    color: v.$blanco;
+    text-align: center;
+    margin-bottom: 2rem;
+    white-space: nowrap;
+    @include desktop {
+        text-align: left;
+        margin: 0;
+    }
+}
+
+@mixin texto-fluido($min, $max) {
+    font-size: clamp($min, -0.8rem + 10vw, $max);
+}
+
+@mixin texto-degradado($incio, $fin) {
+    background: linear-gradient(to right, $incio, $fin);
+    background-clip: text;
+    color: transparent;
+}
+
+@mixin menu-social($color, $size) {
+
+    &__enlace {
+        color: $color;
+        transition: all .3s ease-in-out;
+        &::before {
+            font-size: $size;
+            display: inline-block;
+            font-style: normal;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+            font-family: "Font Awesome 6 Brands";
+            
+        }
+
+        &[href*="https://www.facebook.com"]::before {
+            content: "\f39e";
+        }
+        &[href*="https://www.instagram.com"]::before {
+            content: "\f16d";
+        }
+        &[href*="https://github.com"]::before {
+            content: "\f09b";
+        }
+        &[href*="https://www.linkedin.com/in"]::before {
+            content: "\f08c";
+        }
+        &[href*="https://www.youtube.com"]::before {
+            content: "\f167";
+        }
+
+        &:hover {
+            color: rgb(158, 158, 158);
+            transform: scale(.95);
+        }
+    }
+}
+
+@mixin shadow {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+@mixin reset-lista {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin tags {
+    @include reset-lista();
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+
+    > li {
+        background-color: v.$azul;
+        border-radius: .5rem;
+        padding: 1rem;
+        font-weight: bold;
+        font-size: 1.4rem;
+        color: v.$blanco;
+        cursor: pointer;
+    }
+}
+
+@mixin header-paginas($pagina) {
+    $image-path: '/build/img/header-#{$pagina}';
+
+    padding: 4rem 4rem 7rem 4rem;
+    background: linear-gradient(180deg, rgba(0, 19, 46, 0.6) 0%, rgba(0, 19, 46, 0.6) 100%),
+        image-set(
+            url('#{$image-path}.avif') type('image/avif'),
+            url('#{$image-path}.webp') type('image/webp'),
+            url('#{$image-path}.png') type('image/png')
+        );d-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+    h1 {
+        color: white;
+        @include texto-fluido(5rem, 8rem);
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
+        margin: 3.5rem 0;
+        color: white;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+    }
+
+    .caja_boton_consulta {
+        margin: 0 auto;
+        width: 80%;
+    }
+}
+
+@mixin card {
+    border: 1px solid lighten(v.$gris, 10);
+    padding: 3rem;
+
+    &__nombre {
+        font-weight: v.$black;
+        font-size: 2.6rem;
+        margin: 2rem 0;
+    }
+}
+
+@mixin bg-gradient($bg_color) {
+    background-image: linear-gradient(to left top, $bg_color, lighten($bg_color, 15%));
+}

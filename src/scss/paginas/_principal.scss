@@ -1,0 +1,151 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.principal {
+    .caja_titulo_bajocero {
+        background-image: url(../../../build/img/fondo.png);
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        justify-content: center;
+    
+        @include m.desktop {
+            margin-top: 5rem;
+        }
+    
+        .titulo_bajocero {
+            width: 35rem;
+            padding: 5rem 0;
+    
+            @include m.desktop {
+                padding: 8rem;
+                width: 90rem;
+            }
+        }
+    }
+
+    .contenedor_main {
+        width: min(95%, 120rem);
+        margin: 0 auto;
+        font-size: 1.8rem;    
+    
+        .titulo_productos {
+            text-align: center;
+            margin: 6rem 0;
+            font-size: 4.5rem;
+        }
+    
+        .caja_precio_dolar {
+            display: none;
+    
+            @include m.desktop {
+                position: absolute;
+                left: 10rem;
+                top: 67rem;
+                text-align: center;
+                border: solid 1px;
+                border-radius: 1rem;
+                padding: 1rem;
+                display: block;
+    
+                h2 {
+                    margin: 0 0 1rem 0;
+                }
+    
+                .dolar_pantalla {
+                    margin: 0;
+                    font-size: 2.2rem;
+                }
+            }
+        }
+    
+        .contenedor_productos {
+            display: grid;
+            place-items: center;
+            gap: 5rem;
+            grid-template-columns: repeat(1, 1fr);
+            margin-top: 7rem;
+    
+            @include m.desktop {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 4rem;
+            }
+    
+            .productos {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+                border-radius: 2rem;
+                padding: 1.2rem;
+                width: min(95%, 40rem);
+                box-shadow: 0 0 9px 1px rgb(148, 148, 148);
+    
+                .h2titulo {
+                    font-size: 2.2rem;
+                    text-align: start;
+                }
+                
+                .talles-contenedor {
+                    .talle_seleccionado {
+                        background-color: red;
+                    }
+                }
+
+                .precio_info {
+    
+                    .precio {
+                        display: flex;
+                        justify-content: center;
+    
+                        .oferta {
+                            font-size: 2rem;
+                            text-decoration: line-through;
+                            color: rgb(68, 68, 68);
+                        }
+    
+                        .monto {
+                            margin: 2rem 2rem 2rem 0;
+                            font-weight: bold;
+                            font-size: 2.5rem;
+                        }
+    
+                        .montoUSD {
+                            margin: 2rem 0;
+                            font-weight: bold;
+                            font-size: 1.8rem;
+                        }
+                    }
+    
+                    .btn_comprarinfo {
+                        display: grid;
+                        gap: 1rem;
+    
+                        .boton_comprar {
+                            background-color: #00d1d1;
+                            border-radius: 0.5rem;
+                            border: 0;
+                            padding: 0.5rem;
+                            font-size: 2.5rem;
+                            text-decoration: none;
+                            color: black;
+                            transition: background-color 0.5s, color 0.5s;
+                        }
+    
+                        .boton_comprar:hover {
+                            cursor: pointer;
+                            background-color: #00ff95;
+                            transition: background-color 0.5s, color 0.5s;
+                        }
+                    }
+                }
+    
+                .imagen_producto {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+
