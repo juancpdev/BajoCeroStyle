@@ -226,19 +226,35 @@
                     }
                 }
             }
-            .realizar-pedido {
-                @include m.boton(rgb(0, 177, 0));
-                width: 100%;
-                border-radius: 2rem;
-                margin-bottom: 3rem;
+            .botones-li {
+                .realizar-pedido {
+                    @include m.boton(rgb(0, 177, 0));
+                    width: 100%;
+                    border-radius: 2rem;
+                    margin-bottom: 3rem;
+                }
+                .vaciar-carrito {
+                    @include m.boton(white);
+                    color: red;
+                    border-radius: 1rem;
+                    width: 100%;
+                    font-size: 1.6rem;
+                }
             }
-            .vaciar-carrito {
-                @include m.boton(white);
-                color: red;
-                border-radius: 1rem;
-                width: 100%;
-                font-size: 1.6rem;
+            .carrito-vacio {
+                text-align: center;
+                margin: 5rem 0;
+                .contenedor {
+                    margin-bottom: 2rem;
+                }
+                .volver-tienda {
+                    padding: 0;
+                    cursor: pointer;
+                    color: blue;
+                    border-bottom: .1rem solid blue;
+                }
             }
+            
         }
     }
 
