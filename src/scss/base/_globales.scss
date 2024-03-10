@@ -1,6 +1,15 @@
 @use 'variables' as v;
 @use 'mixins' as m;
 
+:root {
+    --dark: #34495E;
+    --light: #ffffff;
+    --success: #0ABF30;
+    --error: #E24D4C;
+    --warning: #E9BD0C;
+    --info: #3498DB;
+}
+
 html {
     font-size: 62.5%;
     box-sizing: border-box;

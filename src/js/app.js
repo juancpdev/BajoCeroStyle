@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     dolar();
     menuMobile();
@@ -138,7 +139,7 @@ function carrito() {
     const btnAgregarCarrito = document.querySelectorAll(".boton_comprar");
     const contenedorProductos = document.querySelector(".carrito-ul");
     const vaciar = document.querySelector(".vaciar-carrito");
-    const carritoNum = document.getElementById("carro-cantidad-items");
+    const carritoNum = document.querySelectorAll(".carro-compras__items");
     const carritoVacio = document.querySelector(".carrito-vacio");
     const botonesLi = document.querySelector('.botones-li');
 
@@ -198,7 +199,6 @@ function carrito() {
     function agregarCarrito(e) {
         const productoSeleccionado = e.target.closest('.productos');
         leerDatosProductos(productoSeleccionado);
-
     }
 
     function leerDatosProductos(producto) {
@@ -206,7 +206,7 @@ function carrito() {
         const btnTalle = producto.querySelector(".talle_seleccionado");
         
         if (!btnTalle) {
-            alert("Por favor, selecciona un talle antes de agregar al carrito.");
+            createToast("error");
             const talleSeleccionadoTemporal = document.querySelector(".talle_seleccionado");
             
             if(talleSeleccionadoTemporal) {
@@ -215,7 +215,7 @@ function carrito() {
 
             return;
         }
-
+        createToast("success");
         const talleSeleccionado = btnTalle.textContent;
 
         // Comprobar si el producto ya está en el carrito con el mismo talle
@@ -251,7 +251,9 @@ function carrito() {
 
         const numeroDeProductos = articulosCarrito.length;
 
-        carritoNum.innerHTML = numeroDeProductos;
+        carritoNum.forEach(numero => {
+            numero.innerHTML = numeroDeProductos;
+        });
 
         // Verificar si el carrito está vacío
         if (numeroDeProductos === 0) {
@@ -318,7 +320,11 @@ function carrito() {
 
     function vaciarCarrito() {
         articulosCarrito = [];
-        carritoNum.textContent = 0;
+
+        carritoNum.forEach(numero => {
+            numero.textContent = 0;
+        });
+        
         limpiarHTML();
 
         carritoHTML();
@@ -330,6 +336,4 @@ function carrito() {
         }
     }
 
-    
 }
-

@@ -177,9 +177,9 @@
             width: 50rem;
         }
 
-        .cerrar-carrito {
+        .cerrar-carrito-contenedor {
             padding: 2rem;
-            i {
+            .cerrar-carrito {
                 cursor: pointer;
                 font-size: 3rem;
                 color: rgb(77, 77, 77);
