@@ -87,7 +87,7 @@ function productos() {
 
         htmlVista += `
         <div class="productos">
-            <div>
+            <div class="contenedor-dolar">
                 <p class="montoUSD">U$D</p>
                 <p class="montoUSD preciodolar">${producto.precio}</p>
             </div>

@@ -69,15 +69,17 @@
             }
         }
     }
+    
 
     .caja_nav--mobile {
-        position: fixed;
-        width: 100%;
+        
         @include m.desktop {
             display: none;
         }
 
         .contenedor_nav {
+            position: fixed;
+        width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -85,7 +87,7 @@
             padding: 1rem 3rem;
             height: 8rem;
             border-bottom: 0.2rem solid #014379;
-
+            z-index: 1000;
             i {
                 font-size: 2.2rem;
                 cursor: pointer;

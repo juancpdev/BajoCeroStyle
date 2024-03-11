@@ -73,13 +73,28 @@
             }
     
             .productos {
+                position: relative;
                 display: flex;
                 flex-direction: column;
                 text-align: center;
                 border-radius: 2rem;
                 padding: 1.2rem;
                 width: min(95%, 40rem);
-                box-shadow: 0 0 9px 1px rgb(148, 148, 148);
+                box-shadow: 0 0 10px 0 rgba(80, 132, 255, 0.588);
+
+                .contenedor-dolar {
+                    position: absolute;
+                    right: 1.2rem;
+                    width: 6.5rem;
+                    height: 3rem;
+                    display: flex;
+                    gap: .3rem;
+                    background-color: rgb(196, 1, 1);
+                    border-radius: .8rem;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 1.5rem;
+                }
                 
                 .producto-contenedor-titulo {
                     margin-top: 1rem;
@@ -89,9 +104,13 @@
                     gap: 2rem;
 
                     .h2titulo {
-                        font-size: 2rem;
+                        font-size: 1.6rem;
                         text-align: start;
                         margin: 0;
+
+                        @include m.tablet {
+                            font-size: 2rem;
+                        }
                     }
 
                     .precio_info {
@@ -110,8 +129,12 @@
                             .monto {
                                 margin: 2rem 2rem 2rem 0;
                                 font-weight: bold;
-                                font-size: 2rem;
+                                font-size: 1.6rem;
                                 margin: 0;
+
+                                @include m.tablet {
+                                    font-size: 2rem;
+                                }
                             }
         
                             .montoUSD {
@@ -128,6 +151,7 @@
                         text-align: start;
                         color: #dadada;
                         margin-bottom: 0;
+                        font-size: 1.5rem;
                     }
 
                     .contenedor-botones-talle {
@@ -138,21 +162,26 @@
                         .boton_talle {
                             border-radius: .5rem;
                             width: 5rem;
-                            height: 3.5rem;
+                            height: 3rem;
                             cursor: pointer;
                             border: none;
                             transition: all .3s ease;
+                            font-size: 1.4rem;
+                            background-color: #00123a;
+                            color: white;
+                            border: 1px solid rgba(2, 57, 185, 0.588);
 
                             &:hover {
-                                background-color: #93e6ff;
+                                background-color: #002169;
                             }
                         }
                         
                         .talle_seleccionado {
-                            background-color: #00c3ff;
+                            background-color: white;
+                            color: black;
 
                             &:hover {
-                                background-color: #00c3ff;
+                                background-color: white;
                             }
                         }
                     }
@@ -168,25 +197,25 @@
                         border-radius: 0.5rem;
                         border: 0;
                         padding: 1rem;
-                        font-size: 1.7rem;
+                        font-size: 1.5rem;
                         text-decoration: none;
                         color: black;
                         transition: background-color 0.5s, color 0.5s;
-
-                        i {
-                            font-size: 2rem;
-                        }
                     }
 
                     .boton_comprar:hover {
                         cursor: pointer;
-                        background-color: #00ff95;
+                        background-color: #008f8f;
                         transition: background-color 0.5s, color 0.5s;
                     }
                 }
 
                 .imagen_producto {
+                    border-radius: 1rem;
                     width: 100%;
+                    height: 20rem;
+                    object-fit: cover;
+                    object-position: 50% 50%;
                 }
             }
         }
