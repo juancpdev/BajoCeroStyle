@@ -38,7 +38,7 @@ function dolar() {
 
         let elementoMonto = document.querySelectorAll('p.monto')[i];
 
-        elementoMonto.textContent = `A$S ${precioEnPesos}`;
+        elementoMonto.textContent = `$${precioEnPesos.toLocaleString('es-ES', { minimumFractionDigits: 0 })}`;
     }
 
     })
@@ -75,7 +75,6 @@ function menuMobile() {
 }
 
 function productos() {
-
     const productos = stock;
 
     let htmlVista = "";
@@ -88,26 +87,33 @@ function productos() {
 
         htmlVista += `
         <div class="productos">
+            <div>
+                <p class="montoUSD">U$D</p>
+                <p class="montoUSD preciodolar">${producto.precio}</p>
+            </div>
             <div>     
                 <img src="${producto.img}" class="imagen_producto">
             </div>
-            <div>
+            <div class="producto-contenedor-titulo">
                 <h2 class="h2titulo">${producto.modelo}</h2>
+
+                <div class="precio_info">
+                    <div class="precio">
+                        <p class="oferta"></p>
+                        <p class="monto"></p>
+                    </div>            
+                </div>
             </div>
+            
             <div class="talles-contenedor">
                 <p class="titulo">Elige un talle</p>
-                ${botonesTalles}
-            </div>
-            <div class="precio_info">
-                <div class="precio">
-                    <p class="oferta"></p>
-                    <p class="monto"></p>
-                    <p class="montoUSD">U$D</p>
-                    <p class="montoUSD preciodolar">${producto.precio}</p>
-                </div>            
-                <div class="btn_comprarinfo">
-                    <a class="boton_comprar" data-id="${producto.id}">Comprar</a>                        
+                <div class="contenedor-botones-talle">
+                    ${botonesTalles}
                 </div>
+            </div>
+            
+            <div class="btn_comprarinfo">
+                <a class="boton_comprar" data-id="${producto.id}"><i class="fa-solid fa-bag-shopping"></i> Agregar al carrito</a>                        
             </div>
         </div>`;
     });
@@ -123,8 +129,8 @@ function productos() {
 }
 
 function seleccionarTalle(e) {
-    // Marcamos el botón de talle seleccionado
     const botonesTalle = document.querySelectorAll('.boton_talle');
+    // Marcamos el botón de talle seleccionado
     botonesTalle.forEach((boton) => {
         boton.classList.remove('talle_seleccionado');
     });
@@ -229,7 +235,7 @@ function carrito() {
                 id: producto.querySelector(".boton_comprar").dataset.id,
                 imagen: producto.querySelector(".imagen_producto").src,
                 nombre: producto.querySelector(".h2titulo").textContent,
-                precio: (producto.querySelector(".monto").textContent).split(' ')[1],
+                precio: (producto.querySelector(".monto").textContent),
                 talle: talleSeleccionado,
                 cantidad: 1
             }
@@ -278,10 +284,10 @@ function carrito() {
 
             li.innerHTML = `
                 <div class="contenedor-producto-izquierda">
-                    <img src="${producto.imagen}" alt="" class="imagen_miniatura"/>
+                    <img src="${producto.imagen}" class="imagen_miniatura" alt="Imagen Producto"/>
                     <div class="producto-info">
-                        <p>${producto.nombre}</p>
-                        <p>Talle: ${producto.talle}</p>
+                        <p class="producto-info__nombre">${producto.nombre}</p>
+                        <p class="producto-info__talle">Talle: ${producto.talle}</p>
                         <div>
                             <button class="boton-restar">-</button>
                             <span class="cantidad">${producto.cantidad}</span>
@@ -290,7 +296,7 @@ function carrito() {
                     </div>
                 </div>
                 <div class="contenedor-producto-derecha">
-                    <div class="precio">$${parseFloat(producto.precio)}</div>
+                    <div class="precio">${producto.precio}</div>
                     <i data-id="${producto.id}" data-talle="${producto.talle}" class="eliminar-producto fa-solid fa-trash"></i>
                 </div>
             `;

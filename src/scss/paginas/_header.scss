@@ -169,7 +169,7 @@
         background-color: white;
         color: black;
         height: 100%;
-        width: 80%;
+        width: 100%;
         right: -100rem;
         transition: right 0.4s ease-in-out; 
         z-index: 10000;
@@ -200,18 +200,40 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-                    padding: 1rem 0;
+                    padding: 1rem 0 2rem 0;
+                    gap: 2rem;
                     .contenedor-producto-izquierda {
                         display: flex;
+                        align-items: center;
                         gap: 1rem;
                         .imagen_miniatura {
-                            width: 10rem;
+                            width: 75px;
+                            height: 75px;
+                            object-fit: cover;
+                            object-position: 50% 0%;
+                            border-radius: 3px;
                         }
                         .producto-info {
                             p {
-                                font-size: 2rem;
                                 font-weight: 500;
+                                margin-bottom: .6rem;
                             }
+                            &__nombre {
+                                font-size: 1.6rem;
+
+                                @include m.tablet {
+                                    font-size: 1.8rem;
+                                }
+                            }
+                            &__talle {
+                                font-size: 1.5rem;
+                                color: #867D73;
+
+                                @include m.tablet {
+                                    font-size: 1.6rem;
+                                }
+                            }
+                            
                         }
                     }
                     .contenedor-producto-derecha { 
@@ -219,6 +241,10 @@
                         gap: 1.5rem;
                         font-size: 1.8rem;
                         font-weight: bold;
+
+                        .precio {
+                            font-weight: 500;
+                        }
 
                         .eliminar-producto {
                             cursor: pointer;
@@ -232,6 +258,10 @@
                     width: 100%;
                     border-radius: 2rem;
                     margin-bottom: 3rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: .5rem;
                 }
                 .vaciar-carrito {
                     @include m.boton(white);
@@ -244,7 +274,7 @@
             .carrito-vacio {
                 text-align: center;
                 margin: 5rem 0;
-                .contenedor {
+                .contenedor-titulo {
                     margin-bottom: 2rem;
                 }
                 .volver-tienda {

@@ -80,66 +80,111 @@
                 padding: 1.2rem;
                 width: min(95%, 40rem);
                 box-shadow: 0 0 9px 1px rgb(148, 148, 148);
-    
-                .h2titulo {
-                    font-size: 2.2rem;
-                    text-align: start;
-                }
                 
+                .producto-contenedor-titulo {
+                    margin-top: 1rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    gap: 2rem;
+
+                    .h2titulo {
+                        font-size: 2rem;
+                        text-align: start;
+                        margin: 0;
+                    }
+
+                    .precio_info {
+    
+                        .precio {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+        
+                            .oferta {
+                                font-size: 2rem;
+                                text-decoration: line-through;
+                                color: rgb(68, 68, 68);
+                            }
+        
+                            .monto {
+                                margin: 2rem 2rem 2rem 0;
+                                font-weight: bold;
+                                font-size: 2rem;
+                                margin: 0;
+                            }
+        
+                            .montoUSD {
+                                margin: 2rem 0;
+                                font-weight: bold;
+                                font-size: 1.8rem;
+                            }
+                        }
+                    }
+                }
+ 
                 .talles-contenedor {
-                    .talle_seleccionado {
-                        background-color: red;
+                    .titulo {
+                        text-align: start;
+                        color: #dadada;
+                        margin-bottom: 0;
+                    }
+
+                    .contenedor-botones-talle {
+                        margin: .5rem 0 2rem 0;
+                        display: flex;
+                        gap: 1rem;
+
+                        .boton_talle {
+                            border-radius: .5rem;
+                            width: 5rem;
+                            height: 3.5rem;
+                            cursor: pointer;
+                            border: none;
+                            transition: all .3s ease;
+
+                            &:hover {
+                                background-color: #93e6ff;
+                            }
+                        }
+                        
+                        .talle_seleccionado {
+                            background-color: #00c3ff;
+
+                            &:hover {
+                                background-color: #00c3ff;
+                            }
+                        }
                     }
                 }
 
-                .precio_info {
     
-                    .precio {
-                        display: flex;
-                        justify-content: center;
-    
-                        .oferta {
+                .btn_comprarinfo {
+                    display: grid;
+                    gap: 1rem;
+
+                    .boton_comprar {
+                        background-color: #00d1d1;
+                        border-radius: 0.5rem;
+                        border: 0;
+                        padding: 1rem;
+                        font-size: 1.7rem;
+                        text-decoration: none;
+                        color: black;
+                        transition: background-color 0.5s, color 0.5s;
+
+                        i {
                             font-size: 2rem;
-                            text-decoration: line-through;
-                            color: rgb(68, 68, 68);
-                        }
-    
-                        .monto {
-                            margin: 2rem 2rem 2rem 0;
-                            font-weight: bold;
-                            font-size: 2.5rem;
-                        }
-    
-                        .montoUSD {
-                            margin: 2rem 0;
-                            font-weight: bold;
-                            font-size: 1.8rem;
                         }
                     }
-    
-                    .btn_comprarinfo {
-                        display: grid;
-                        gap: 1rem;
-    
-                        .boton_comprar {
-                            background-color: #00d1d1;
-                            border-radius: 0.5rem;
-                            border: 0;
-                            padding: 0.5rem;
-                            font-size: 2.5rem;
-                            text-decoration: none;
-                            color: black;
-                            transition: background-color 0.5s, color 0.5s;
-                        }
-    
-                        .boton_comprar:hover {
-                            cursor: pointer;
-                            background-color: #00ff95;
-                            transition: background-color 0.5s, color 0.5s;
-                        }
+
+                    .boton_comprar:hover {
+                        cursor: pointer;
+                        background-color: #00ff95;
+                        transition: background-color 0.5s, color 0.5s;
                     }
                 }
-    
+
                 .imagen_producto {
                     width: 100%;
                 }

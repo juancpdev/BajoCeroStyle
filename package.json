@@ -1,7 +1,7 @@
 {
-  "name": "jota-business",
+  "name": "jpdev--jotabusiness",
   "version": "1.0.0",
-  "description": "Proyecto ",
+  "description": "Proyecto Bajo Cero",
   "main": "gulpfile.js",
   "scripts": {
     "dev": "gulp"
@@ -10,7 +10,7 @@
     "SASS",
     "Gulp"
   ],
-  "author": "Jose Ignacio Pineda",
+  "author": "Juan Cruz Pineda / Jose Ignacio Pineda",
   "license": "ISC",
   "devDependencies": {
     "cssnano": "^6.0.0",

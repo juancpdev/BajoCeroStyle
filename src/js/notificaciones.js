@@ -3,21 +3,21 @@ buttons = document.querySelectorAll(".buttons .btn");
 
 // Object containing details for different types of toasts
 const toastDetails = {
-    timer: 3000,
+    timer: 5000,
     success: {
         icon: 'fa-circle-check',
-        text: 'Éxito: Se agregó un producto al carrito',
+        text: 'Se agregó un producto al carrito',
     },
     error: {
         icon: 'fa-circle-xmark',
-        text: 'Error: Primero debes elegir un talle.',
+        text: 'Primero debes elegir un talle.',
     },
 }
 
 const removeToast = (toast) => {
     toast.classList.add("hide");
     if(toast.timeoutId) clearTimeout(toast.timeoutId); // Clearing the timeout for the toast
-    setTimeout(() => toast.remove(), 500); // Removing the toast after 500ms
+    setTimeout(() => toast.remove(), 0); // Removing the toast after 500ms
 }
 
 const createToast = (id) => {
@@ -31,6 +31,9 @@ const createToast = (id) => {
                          <span>${text}</span>
                       </div>
                       <i class="fa-solid fa-xmark" onclick="removeToast(this.parentElement)"></i>`;
+    if (notifications.children.length === 1) {
+        removeToast(notifications.children[0]);
+    }
     notifications.appendChild(toast); // Append the toast to the notification ul
     // Setting a timeout to remove the toast after the specified duration
     toast.timeoutId = setTimeout(() => removeToast(toast), toastDetails.timer);
