@@ -7,7 +7,7 @@
   right: 20px;
   z-index: 1000;
 
-  @include m.tablet {
+  @include m.desktop {
     top: 9rem;
   }
 }

@@ -91,11 +91,13 @@ function productos() {
                 <p class="montoUSD">U$D</p>
                 <p class="montoUSD preciodolar">${producto.precio}</p>
             </div>
-            <div>     
+            <div class="contenedor-imagen-producto">     
                 <img src="${producto.img}" class="imagen_producto">
+                <p class="producto-marca">${producto.marca}</p>
             </div>
+            
             <div class="producto-contenedor-titulo">
-                <h2 class="h2titulo">${producto.modelo}</h2>
+                <p class="producto-nombre">${producto.modelo}</p>
 
                 <div class="precio_info">
                     <div class="precio">
@@ -225,7 +227,7 @@ function carrito() {
         const talleSeleccionado = btnTalle.textContent;
 
         // Comprobar si el producto ya está en el carrito con el mismo talle
-        const productoExistente = articulosCarrito.find(item => item.nombre === producto.querySelector(".h2titulo").textContent && item.talle === talleSeleccionado);
+        const productoExistente = articulosCarrito.find(item => item.nombre === producto.querySelector(".producto-nombre").textContent && item.talle === talleSeleccionado);
 
 
         if (productoExistente) {
@@ -234,7 +236,7 @@ function carrito() {
             const infoProducto = {
                 id: producto.querySelector(".boton_comprar").dataset.id,
                 imagen: producto.querySelector(".imagen_producto").src,
-                nombre: producto.querySelector(".h2titulo").textContent,
+                nombre: producto.querySelector(".producto-nombre").textContent,
                 precio: (producto.querySelector(".monto").textContent),
                 talle: talleSeleccionado,
                 cantidad: 1

@@ -15,7 +15,7 @@
         }
     
         .titulo_bajocero {
-            width: 35rem;
+            width: 20rem;
             padding: 5rem 0;
     
             @include m.desktop {
@@ -33,7 +33,11 @@
         .titulo_productos {
             text-align: center;
             margin: 6rem 0;
-            font-size: 4.5rem;
+            font-size: 3rem;
+
+            @include m.tablet {
+                font-size: 4.5rem;
+            }
         }
     
         .caja_precio_dolar {
@@ -61,54 +65,66 @@
         }
     
         .contenedor_productos {
-            display: grid;
-            place-items: center;
-            gap: 5rem;
-            grid-template-columns: repeat(1, 1fr);
+            @include m.grid(2, 1rem);
             margin-top: 7rem;
+            place-items: center;
+            gap: 2rem;
     
             @include m.desktop {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 4rem;
+                @include m.grid(3, 3rem);
             }
     
             .productos {
                 position: relative;
                 display: flex;
                 flex-direction: column;
+                justify-content: space-between;
                 text-align: center;
-                border-radius: 2rem;
+                border-radius: 1rem;
                 padding: 1.2rem;
-                width: min(95%, 40rem);
-                box-shadow: 0 0 10px 0 rgba(80, 132, 255, 0.588);
+                width: 100%;
+                height: 100%;
+                box-shadow: 0 0 5px 2px rgba(80, 132, 255, 0.588);
+                
 
                 .contenedor-dolar {
                     position: absolute;
                     right: 1.2rem;
-                    width: 6.5rem;
-                    height: 3rem;
+                    width: 5rem;
+                    height: 2.5rem;
+                    font-size: 1.3rem;
                     display: flex;
                     gap: .3rem;
                     background-color: rgb(196, 1, 1);
                     border-radius: .8rem;
                     justify-content: center;
                     align-items: center;
-                    font-size: 1.5rem;
+
+                    @include m.tablet {
+                        width: 5.3rem;
+                        height: 2.5rem;
+                        font-size: 1.4rem;
+                    }
                 }
-                
+
                 .producto-contenedor-titulo {
                     margin-top: 1rem;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    gap: 2rem;
+                    margin-bottom: 1rem;
+                    gap: 1rem;
 
-                    .h2titulo {
-                        font-size: 1.6rem;
-                        text-align: start;
+                    @include m.tablet {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        gap: 2rem;
+                    }
+
+                    .producto-nombre {
+                        font-size: 1.4rem;
                         margin: 0;
 
                         @include m.tablet {
+                            text-align: start;
                             font-size: 2rem;
                         }
                     }
@@ -149,7 +165,8 @@
                 .talles-contenedor {
                     .titulo {
                         text-align: start;
-                        color: #dadada;
+                        color: #979797;
+                        margin-top: 0;
                         margin-bottom: 0;
                         font-size: 1.5rem;
                     }
@@ -157,11 +174,11 @@
                     .contenedor-botones-talle {
                         margin: .5rem 0 2rem 0;
                         display: flex;
-                        gap: 1rem;
+                        gap: .3rem;
 
                         .boton_talle {
                             border-radius: .5rem;
-                            width: 5rem;
+                            width: 4rem;
                             height: 3rem;
                             cursor: pointer;
                             border: none;
@@ -170,6 +187,10 @@
                             background-color: #00123a;
                             color: white;
                             border: 1px solid rgba(2, 57, 185, 0.588);
+
+                            @include m.tablet {
+                                width: 5rem;
+                            }
 
                             &:hover {
                                 background-color: #002169;
@@ -190,17 +211,24 @@
     
                 .btn_comprarinfo {
                     display: grid;
-                    gap: 1rem;
-
+                    
                     .boton_comprar {
                         background-color: #00d1d1;
                         border-radius: 0.5rem;
                         border: 0;
                         padding: 1rem;
-                        font-size: 1.5rem;
+                        font-size: 1.4rem;
                         text-decoration: none;
                         color: black;
                         transition: background-color 0.5s, color 0.5s;
+
+                        @include m.tablet {
+                            font-size: 1.6rem;
+                        }
+
+                        i {
+                            padding-right: .5rem;
+                        }
                     }
 
                     .boton_comprar:hover {
@@ -210,13 +238,36 @@
                     }
                 }
 
-                .imagen_producto {
-                    border-radius: 1rem;
-                    width: 100%;
-                    height: 20rem;
-                    object-fit: cover;
-                    object-position: 50% 50%;
+                .contenedor-imagen-producto {
+                    position: relative;
+                    
+                    .imagen_producto {
+                        border-radius: 1rem;
+                        width: 100%;
+                        height: 20rem;
+                        object-fit: cover;
+                        object-position: 50% 50%;
+                    }
+
+                    .producto-marca {
+                        border-bottom-left-radius: 1rem;
+                        border-bottom-right-radius: 1rem;
+                        position: absolute;
+                        bottom: 4px;
+                        left: 0;
+                        width: 100%;
+                        text-align: center;
+                        background-color: rgba(0, 0, 0, 0.705);
+                        padding: .5rem;
+                        margin: 0; 
+                        font-size: 1.4rem;
+
+                        @include m.tablet {
+                            font-size: 1.6rem;
+                        }
+                    }
                 }
+
             }
         }
     }

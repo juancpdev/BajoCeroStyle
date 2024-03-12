@@ -2,7 +2,7 @@ const stock = [
     {
         id: 1,
         marca: 'Nike',
-        modelo: 'Nike Dunk Low Off-White Lot 1',
+        modelo: 'Dunk Off-White Lot 1',
         precio: 100,
         img: "build/img/nikedunklot1.webp",
         talles: [37, 38, 39],
@@ -10,7 +10,7 @@ const stock = [
     {
         id: 2,
         marca: 'Nike',
-        modelo: 'Nike Dunk Low Lilac',
+        modelo: 'Dunk Lilac',
         precio: 95,
         img: "build/img/nikedunklowlilac.webp",
         talles: [37, 38, 39],
@@ -18,7 +18,7 @@ const stock = [
     {
         id: 3,
         marca: 'Adidas',
-        modelo: 'Adidas Forum Low Bad Bunny Pink',
+        modelo: 'Forum Bad Bunny Pink',
         precio: 100,
         img: "build/img/Adidas Forum Low Bad Bunny Pink.webp",
         talles: [42, 43, 44],
@@ -26,7 +26,7 @@ const stock = [
     {
         id: 4,
         marca: 'Nike',
-        modelo: 'Nike SB Dunk Travis Scott',
+        modelo: 'SB Dunk Travis Scott',
         precio: 100,
         img: "build/img/Nike SB Dunk Travis Scott.webp",
         talles: [42, 43, 44],
@@ -34,7 +34,7 @@ const stock = [
     {
         id: 5,
         marca: 'Nike',
-        modelo: 'Nike Air Jordan 1 Mid Barely Orange',
+        modelo: 'Jordan 1 Mid Barely Orange',
         precio: 100,
         img: "build/img/Nike Air Jordan 1 Mid Barely Orange.webp",
         talles: [42, 43, 44],
@@ -42,7 +42,7 @@ const stock = [
     {
         id: 6,
         marca: 'Nike',
-        modelo: 'Nike Dunk Low Off-White Futura UNC',
+        modelo: 'Dunk Off-White Futura UNC',
         precio: 100,
         img: "build/img/Nike Dunk Low Off-White Futura UNC.webp",
         talles: [42, 43, 44],
@@ -50,7 +50,7 @@ const stock = [
     {
         id: 7,
         marca: 'Nike',
-        modelo: 'Nike Air Jordan 1 High Off-White University Blue',
+        modelo: 'Jordan 1 High Off-White University Blue',
         precio: 100,
         img: "build/img/Nike Air Jordan 1 High Off-White University Blue.webp",
         talles: [42, 43, 44],
@@ -58,7 +58,7 @@ const stock = [
     {
         id: 8,
         marca: 'Nike',
-        modelo: 'Nike Air Jordan 1 High Off-White',
+        modelo: 'Jordan 1 High Off-White',
         precio: 100,
         img: "build/img/Nike Air Jordan 1 High Off-White.webp",
         talles: [42, 43, 44],
@@ -66,7 +66,7 @@ const stock = [
     {
         id: 9,
         marca: 'Adidas',
-        modelo: 'Adidas Yezzy Boost 350 V2 Zebra',
+        modelo: 'Yezzy Boost 350 Zebra',
         precio: 100,
         img: "build/img/Adidas Yezzy Boost 350 V2 Zebra.webp",
         talles: [42, 43, 44],
@@ -74,7 +74,7 @@ const stock = [
     {
         id: 10,
         marca: 'Adidas',
-        modelo: 'Adidas Yezzy Boost 350 V2 Oreo',
+        modelo: 'Yezzy Boost 350 Oreo',
         precio: 100,
         img: "build/img/Adidas Yezzy Boost 350 V2 Oreo.webp",
         talles: [42, 43, 44],
@@ -82,7 +82,7 @@ const stock = [
     {
         id: 11,
         marca: 'Nike',
-        modelo: 'Nike Air Uptempo Black White',
+        modelo: 'Uptempo Black White',
         precio: 100,
         img: "build/img/Nike Air Uptempo Black White.webp",
         talles: [44],
@@ -90,7 +90,7 @@ const stock = [
     {
         id: 12,
         marca: 'Nike',
-        modelo: 'Nike Air Force 1 Low Double Air',
+        modelo: 'Air Force 1 Double Air',
         precio: 95,
         img: "build/img/Nike Air Force 1 Low Double Air.webp",
         talles: [42, 43],
