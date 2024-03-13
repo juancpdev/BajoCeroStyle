@@ -7,73 +7,40 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function dolar() {
-    const dolarModal = document.querySelectorAll('.dolar-modal');
-    const dolarSimbolo = document.querySelector('.dolar_simbolo');
-    const dolarPantalla = document.querySelector('.dolar_pantalla');
-    let dolarVisible = false;
-    
-    mostrarValorDolar();
-
-    dolarModal.forEach(modal => {
-        modal.addEventListener('click', function() {
-            if (!dolarVisible) {
-                dolarSimbolo.classList.add('oculto');
-                dolarSimbolo.classList.remove('visible');
-                dolarPantalla.classList.add('visible')
-                dolarPantalla.classList.remove('oculto')
-                dolarVisible = true;
-            } else {
-                dolarPantalla.classList.add('oculto');
-                dolarPantalla.classList.remove('visible');
-                dolarSimbolo.classList.add('visible')
-                dolarSimbolo.classList.remove('oculto')
-                dolarVisible = false;
-            }
-        });
+    // Definir la URL de la API
+    const apiUrl = 'https://dolarapi.com/v1/dolares/blue';
+    fetch(apiUrl)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
     })
-
-    function mostrarValorDolar() {
-        // Definir la URL de la API
-        const apiUrl = 'https://dolarapi.com/v1/dolares/blue';
+    .then(data => {
+        // Asumiendo que quieres usar el precio de venta del dólar para la conversión
+        const precioDolarVenta = parseFloat(data.venta);
         
-        fetch(apiUrl)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Asumiendo que quieres usar el precio de venta del dólar para la conversión
-            const precioDolarVenta = parseFloat(data.venta);
-
-            const precioFormateado = precioDolarVenta.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-            // Agregar el signo de dólar y mostrar el precio formateado
-            dolarPantalla.textContent += ` $${precioFormateado}`;
-            
-            // Calcular el precio en dólares y mostrarlo en la página
-            let cantidadDeMonto = document.querySelectorAll('p.monto').length;
-    
-    
+        //Mostrar precio de dolar en pantalla
+        let dolarPantalla = document.getElementsByClassName('dolar_pantalla');
+        dolarPantalla[0].textContent = `$${precioDolarVenta}`;
+        
+        // Calcular el precio en dólares y mostrarlo en la página
+        let cantidadDeMonto = document.querySelectorAll('p.monto').length;
+        
         for(let i=0; i<cantidadDeMonto; i++){
             // Obtener el precio en moneda local desde tu página web
             let precioDolar = document.getElementsByClassName('preciodolar');
             precioDolar = precioDolar[i].textContent;
             precioDolar = parseInt(precioDolar);
-    
-            let precioEnPesos = precioDolar * precioDolarVenta;
-    
-            let elementoMonto = document.querySelectorAll('p.monto')[i];
-    
-            elementoMonto.textContent = `$${precioEnPesos.toLocaleString('es-ES', { minimumFractionDigits: 0 })}`;
-        }
-        })
-        .catch(error => {
-            console.error('Error al obtener los datos de la API:', error);
-        });
-    }
-
+                precioDolarConAumento = precioDolarVenta * 1.15;
+                let precioEnPesos = precioDolar * precioDolarConAumento;
+                let elementoMonto = document.querySelectorAll('p.monto')[i];
+                elementoMonto.textContent = `$${precioEnPesos.toLocaleString('es-ES', { minimumFractionDigits: 0 })}`;
+            }
+    })
+    .catch(error => {
+        console.error('Error al obtener los datos de la API:', error);
+    });
 }
 
 
