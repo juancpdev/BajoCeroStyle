@@ -4,11 +4,11 @@
 .notifications {
   position: fixed;
   top: 7rem;
-  right: 20px;
+  right: 15px;
   z-index: 1000;
 
   @include m.desktop {
-    top: 9rem;
+    top: 7rem;
   }
 }
 .notifications :where(.toast, .column) {
@@ -85,7 +85,7 @@
   background: var(--info);
 }
 .toast .column i {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 .toast.success .column i {
   color: var(--success);
@@ -100,7 +100,7 @@
   color: var(--info);
 }
 .toast .column span {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-left: 12px;
   color: black;
 }

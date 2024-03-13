@@ -20,16 +20,17 @@
             align-items: center;
             background-color: #00081a;
             border-bottom: 0.2rem solid #014379;
-            height: 10rem;
+            height: 8rem;
             z-index: 1000;
         }
 
         .logo {
             height: 10rem;
             width: auto;
-
+            display: flex;
+            align-items: center;
             @include m.desktop {
-                height: 8rem;
+                height: 6rem;
                 width: auto;
             }
         }
@@ -53,7 +54,8 @@
                 border-radius: 0.5rem;
                 text-align: center;
                 transition: background-color 0.5s, color 0.5s;
-
+                font-size: 1.7rem;
+                font-weight: 700;
                 &:hover {
                     color: #33a3ff;
                     transition: background-color 0.5s, color 0.5s;
@@ -62,6 +64,7 @@
 
             i {
                 cursor: pointer;
+                font-size: 2rem;
                 &:hover {
                     color: #33a3ff;
                     transition: background-color 0.5s, color 0.5s;
@@ -79,7 +82,7 @@
 
         .contenedor_nav {
             position: fixed;
-        width: 100%;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;

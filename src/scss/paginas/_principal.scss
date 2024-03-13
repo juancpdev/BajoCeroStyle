@@ -11,16 +11,16 @@
         justify-content: center;
     
         @include m.desktop {
-            margin-top: 5rem;
+            margin-top: 3rem;
         }
     
         .titulo_bajocero {
-            width: 20rem;
+            width: 25rem;
             padding: 5rem 0;
     
             @include m.desktop {
                 padding: 8rem;
-                width: 90rem;
+                width: 80rem;
             }
         }
     }
@@ -71,7 +71,7 @@
             gap: 2rem;
     
             @include m.desktop {
-                @include m.grid(3, 3rem);
+                @include m.grid(3, 4rem);
             }
     
             .productos {
@@ -84,8 +84,8 @@
                 padding: 1.2rem;
                 width: 100%;
                 height: 100%;
-                box-shadow: 0 0 5px 2px rgba(80, 132, 255, 0.588);
-                
+                box-shadow: 0 0 3px 1px rgba(80, 133, 255, 0.288);
+                background: linear-gradient(to right, rgba(175, 199, 255, 0), rgba(107, 151, 255, 0.445));
 
                 .contenedor-dolar {
                     position: absolute;
@@ -119,12 +119,12 @@
                     }
 
                     .producto-nombre {
-                        font-size: 1.4rem;
+                        font-size: 1.2rem;
                         margin: 0;
 
                         @include m.tablet {
                             text-align: start;
-                            font-size: 2rem;
+                            font-size: 1.5rem;
                         }
                     }
 
@@ -137,7 +137,7 @@
         
                             .monto {
                                 font-weight: bold;
-                                font-size: 1.6rem;
+                                font-size: 1.4rem;
                                 margin: .5rem 0;
 
                                 @include m.tablet {
@@ -160,7 +160,10 @@
                         color: #979797;
                         margin-top: 0;
                         margin-bottom: 0;
-                        font-size: 1.5rem;
+                        font-size: 1.2rem;
+                        @include m.tablet {
+                            font-size: 1.4rem;
+                        }
                     }
 
                     .contenedor-botones-talle {
@@ -174,18 +177,21 @@
 
                         .boton_talle {
                             border-radius: .5rem;
-                            width: 4rem;
-                            height: 3rem;
+                            width: 3.5rem;
+                            height: 2.5rem;
                             cursor: pointer;
                             border: none;
                             transition: all .3s ease;
-                            font-size: 1.4rem;
+                            font-size: 1.1rem;
                             background-color: #00123a;
                             color: white;
                             border: 1px solid rgba(2, 57, 185, 0.588);
+                            
 
                             @include m.tablet {
                                 width: 5rem;
+                                height: 3rem;
+                                font-size: 1.4rem;
                             }
 
                             &:hover {
@@ -213,13 +219,13 @@
                         border-radius: 0.5rem;
                         border: 0;
                         padding: 1rem;
-                        font-size: 1.3rem;
+                        font-size: 1rem;
                         text-decoration: none;
                         color: black;
                         transition: background-color 0.5s, color 0.5s;
 
                         @include m.tablet {
-                            font-size: 1.6rem;
+                            font-size: 1.4rem;
                         }
 
                         i {
