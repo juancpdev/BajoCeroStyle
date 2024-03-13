@@ -100,6 +100,8 @@
                     justify-content: center;
                     align-items: center;
 
+                    display: none;
+
                     @include m.tablet {
                         width: 5.3rem;
                         height: 2.5rem;
