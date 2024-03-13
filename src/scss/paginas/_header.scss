@@ -195,7 +195,7 @@
             padding: 0 2rem;
             margin-bottom: 3rem;
             p {
-                font-size: 2.5rem;
+                font-size: 2rem;
                 margin: 0;
             }
             .carrito-ul {
@@ -224,18 +224,18 @@
                                 margin-bottom: .6rem;
                             }
                             &__nombre {
-                                font-size: 1.6rem;
-
-                                @include m.tablet {
-                                    font-size: 1.8rem;
-                                }
-                            }
-                            &__talle {
-                                font-size: 1.5rem;
-                                color: #867D73;
+                                font-size: 1.4rem;
 
                                 @include m.tablet {
                                     font-size: 1.6rem;
+                                }
+                            }
+                            &__talle {
+                                font-size: 1.2rem;
+                                color: #867D73;
+
+                                @include m.tablet {
+                                    font-size: 1.4rem;
                                 }
                             }
                             
@@ -249,10 +249,13 @@
 
                         .precio {
                             font-weight: 500;
+                            font-size: 1.6rem;
+
                         }
 
                         .eliminar-producto {
                             cursor: pointer;
+                            color: #d30000;
                         }
                     }
                 }
@@ -267,13 +270,18 @@
                     justify-content: center;
                     align-items: center;
                     gap: .5rem;
+                    font-size: 1.4rem;
+
+                    @include m.tablet {
+                        font-size: 1.6rem;
+                    }
                 }
                 .vaciar-carrito {
                     @include m.boton(white);
                     color: red;
                     border-radius: 1rem;
                     width: 100%;
-                    font-size: 1.6rem;
+                    font-size: 1.4rem;
                 }
             }
             .carrito-vacio {
@@ -281,12 +289,20 @@
                 margin: 5rem 0;
                 .contenedor-titulo {
                     margin-bottom: 2rem;
+                    p {
+                        font-size: 1.6rem;  
+
+                        @include m.tablet {
+                            font-size: 1.8rem;
+                        }
+                    }
                 }
                 .volver-tienda {
                     padding: 0;
                     cursor: pointer;
                     color: blue;
                     border-bottom: .1rem solid blue;
+                    font-size: 1.4rem;
                 }
             }
             

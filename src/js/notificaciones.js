@@ -3,7 +3,7 @@ buttons = document.querySelectorAll(".buttons .btn");
 
 // Object containing details for different types of toasts
 const toastDetails = {
-    timer: 50000,
+    timer: 5000,
     success: {
         icon: 'fa-circle-check',
         text: 'Se agregó un producto al carrito',
