@@ -239,6 +239,31 @@
                                 }
                             }
                             
+                            .cantidad-productos {
+                                display: flex;
+                                align-items: center;
+                                gap: .8rem;
+                                .btn-cantidad {
+                                    background-color: rgb(228, 228, 228);
+                                    cursor: pointer;
+                                    border-radius: 1rem;
+                                    border: none;
+                                    width: 3.5rem;
+                                    font-size: 1.4rem;
+                                    @include m.tablet {
+                                        width: 4rem;
+                                        font-size: 1.6rem;
+                                    }
+                                }
+                                .cantidad {
+                                    font-size: 1.3rem;
+                                    height: 1.2rem;
+                                    @include m.tablet {
+                                        height: 1.6rem;
+                                        font-size: 1.5rem;
+                                    }
+                                }
+                            }
                         }
                     }
                     .contenedor-producto-derecha { 
@@ -279,7 +304,7 @@
                     @include m.boton(rgb(0, 177, 0));
                     width: 100%;
                     border-radius: 2rem;
-                    margin-bottom: 3rem;
+                    margin-bottom: 1rem;
                     display: flex;
                     justify-content: center;
                     align-items: center;
