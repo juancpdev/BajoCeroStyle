@@ -261,6 +261,20 @@
                 }
             }
             .botones-li {
+                .contenedor-total {
+                    display: flex;
+                    justify-content: space-between;
+                    p {
+                        font-size: 1.5rem;
+
+                        @include m.tablet {
+                            font-size: 1.7rem;
+                        }
+                    }
+                    .precio-contenedor {
+                        display: flex
+                    }
+                }
                 .realizar-pedido {
                     @include m.boton(rgb(0, 177, 0));
                     width: 100%;

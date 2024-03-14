@@ -32,10 +32,10 @@ function dolar() {
             let precioDolar = document.getElementsByClassName('preciodolar');
             precioDolar = precioDolar[i].textContent;
             precioDolar = parseInt(precioDolar);
-                precioDolarConAumento = precioDolarVenta * 1.15;
+                precioDolarConAumento = Math.floor(precioDolarVenta * 1.15);
                 let precioEnPesos = precioDolar * precioDolarConAumento;
                 let elementoMonto = document.querySelectorAll('p.monto')[i];
-                elementoMonto.textContent = `$${precioEnPesos.toLocaleString('es-ES', { minimumFractionDigits: 0 })}`;
+                elementoMonto.textContent = `$${precioEnPesos.toLocaleString('es-AR', { minimumFractionDigits: 0 })}`;
             }
     })
     .catch(error => {
@@ -81,7 +81,6 @@ function productos() {
         const botonesTalles = producto.talles.map((talle) => {
             return `<button class="boton_talle" data-talle="${talle}">${talle}</button>`;
         }).join('');
-
         htmlVista += `
         <div class="productos">
             <div class="contenedor-dolar">
@@ -146,7 +145,10 @@ function carrito() {
     const carritoNum = document.querySelectorAll(".carro-compras__items");
     const carritoVacio = document.querySelector(".carrito-vacio");
     const botonesLi = document.querySelector('.botones-li');
-
+    const precioTotalHTML = document.querySelector(".total");
+    
+    let precioTotal = 0;
+    precioTotalHTML.textContent = precioTotal;
     let articulosCarrito = [];
     
     vaciar.addEventListener("click", vaciarCarrito);
@@ -165,20 +167,8 @@ function carrito() {
         cerrar.addEventListener("click", cerrarCarrito);
     }); 
     
-
     carritoHTML();
-
-    function eliminarProducto(e) {
-        if (e.target.classList.contains("eliminar-producto")) {
-            const productoId = e.target.getAttribute("data-id");
-            const talleProducto = e.target.getAttribute("data-talle");
-
-            // Filtrar los productos del carrito para eliminar solo la variante específica
-            articulosCarrito = articulosCarrito.filter(articulo => articulo.id !== productoId || articulo.talle !== talleProducto);
     
-            carritoHTML();
-        }
-    }
 
     function abrirCarrito() {
         carritoDeCompras.classList.add("carrito-abierto");
@@ -220,6 +210,14 @@ function carrito() {
             return;
         }
         createToast("success");
+
+        let precioString = producto.querySelector(".monto").textContent; // Valor del precio en formato "$118.400"
+        let precioNumerico = parseFloat(precioString.replace(/[^\d]/g, ''));
+
+        precioTotal += precioNumerico;
+        let precioFormateado = precioTotal.toLocaleString('es-AR');
+        precioTotalHTML.textContent = precioFormateado;
+
         const talleSeleccionado = btnTalle.textContent;
 
         // Comprobar si el producto ya está en el carrito con el mismo talle
@@ -246,6 +244,24 @@ function carrito() {
         btnTalle.classList.remove("talle_seleccionado");
 
         carritoHTML();
+    }
+
+    function eliminarProducto(e) {
+        if (e.target.classList.contains("eliminar-producto")) {
+            const productoId = e.target.getAttribute("data-id");
+            const talleProducto = e.target.getAttribute("data-talle");
+            const productoEliminado = e.target.closest('.carrito-li'); // Buscar el contenedor del producto eliminado
+            const cantidadProductoEliminado = parseInt(productoEliminado.querySelector('.cantidad').textContent);
+            const precioProductoEliminado = parseFloat(productoEliminado.querySelector(".precio").textContent.replace(/[^\d]/g, ''));
+            articulosCarrito = articulosCarrito.filter(articulo => !(articulo.id === productoId && articulo.talle === talleProducto));
+    
+            // Restar el precio del producto eliminado multiplicado por la cantidad eliminada del precio total
+            precioTotal -= (precioProductoEliminado * cantidadProductoEliminado);
+            let precioFormateado = precioTotal.toLocaleString('es-AR');
+            precioTotalHTML.textContent = precioFormateado;
+            carritoHTML();
+
+        }
     }
 
     function carritoHTML() {
@@ -324,7 +340,8 @@ function carrito() {
 
     function vaciarCarrito() {
         articulosCarrito = [];
-
+        precioTotal = 0;
+        precioTotalHTML.textContent = precioTotal;
         carritoNum.forEach(numero => {
             numero.textContent = 0;
         });
