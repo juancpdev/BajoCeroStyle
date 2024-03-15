@@ -1,10 +1,11 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     dolar();
     menuMobile();
     productos();
     carrito();
 });
+
+
 
 function dolar() {
     // Definir la URL de la API
@@ -152,7 +153,7 @@ function carrito() {
     let precioTotal = 0;
     precioTotalHTML.textContent = precioTotal;
     let articulosCarrito = [];
-    
+
     vaciar.addEventListener("click", vaciarCarrito);
     
     carritoDeCompras.addEventListener("click", eliminarProducto);
@@ -167,10 +168,13 @@ function carrito() {
 
     carritoCerrar.forEach(cerrar => {
         cerrar.addEventListener("click", cerrarCarrito);
-    }); 
-    
+    });
+
+    // Local Storage
+    precioTotal = JSON.parse(localStorage.getItem("total")) || 0;
+    articulosCarrito = JSON.parse(localStorage.getItem("carrito")) || [];
     carritoHTML();
-    
+
     // Función para actualizar el mensaje de WhatsApp con los datos del carrito
     function actualizarMensajeWpp() {
         let mensaje = "Hola, me llamo ____ y quiero realizar la siguiente compra:\n\n";
@@ -342,6 +346,9 @@ function carrito() {
 
             contenedorProductos.appendChild(li);
 
+            // Agregar el carrito al Storage
+            sincronizarStorage();
+
             // Obtener elementos de botón de restar y sumar dentro del artículo
             const botonRestar = li.querySelector('.boton-restar');
             const botonSumar = li.querySelector('.boton-sumar');
@@ -364,6 +371,7 @@ function carrito() {
                     precioTotalHTML.textContent = precioFormateado;
                     actualizarMensajeWpp();
                     generarEnlaceWpp();
+                    sincronizarStorage();
                 }
             });
 
@@ -375,9 +383,15 @@ function carrito() {
                 precioTotalHTML.textContent = precioFormateado;
                 actualizarMensajeWpp();
                 generarEnlaceWpp();
+                sincronizarStorage();
             });
 
         });
+    }
+
+    function sincronizarStorage() {
+        localStorage.setItem("carrito", JSON.stringify(articulosCarrito));
+        localStorage.setItem("total", JSON.stringify(precioTotal));
     }
 
     function vaciarCarrito() {
@@ -391,6 +405,8 @@ function carrito() {
         limpiarHTML();
 
         carritoHTML();
+
+        sincronizarStorage();
     }
 
     function limpiarHTML() {
