@@ -1,11 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     dolar();
     menuMobile();
+    filtroProductos();
     productos();
     carrito();
 });
-
-
 
 function dolar() {
     // Definir la URL de la API
@@ -72,12 +71,55 @@ function menuMobile() {
     }
 }
 
+function filtroProductos() {
+    let productos = stock;
+    let filtrados = [];
+
+    // Filtrar Producto por tipo
+    const filtros = document.querySelectorAll('.categorias');
+
+    filtros.forEach( tipo => {
+        tipo.addEventListener('click', filtrarProducto);
+    })
+
+    function filtrarProducto(e) {
+        const filtro = e.target.dataset.tipo;
+
+        if(filtro !== "") {
+            filtrados = productos.filter( producto => producto.tipo === filtro);
+        } else {
+            filtrados = [];
+        }
+        mostrarProductos();
+    }
+
+    function mostrarProductos() {
+        //limpiarProductos();
+    
+        const arrayLenght = filtrados.length ? filtrados : productos;
+        console.log(arrayLenght);
+
+    }
+    
+    function limpiarProductos() {
+        const contenedor = document.querySelector("#listado-tareas");
+    
+        while(contenedor.firstChild) {
+            contenedor.removeChild(contenedor.firstChild);
+        }
+    }
+}
+
+
+
 function productos() {
     const productos = stock;
 
     let htmlVista = "";
 
     productos.forEach((producto) => {
+        const marcaHTML = producto.marca ? `<p class="producto-marca">${producto.marca}</p>` : '';
+
         // Convertimos el array de talles en botones
         const botonesTalles = producto.talles.map((talle) => {
             return `<button class="boton_talle" data-talle="${talle}">${talle}</button>`;
@@ -90,9 +132,9 @@ function productos() {
             </div>
             <div class="contenedor-imagen-producto">     
                 <img src="${producto.img}" class="imagen_producto">
-                <p class="producto-marca">${producto.marca}</p>
+                ${marcaHTML}
             </div>
-            
+            <p class="producto-tipo no-display">${producto.tipo}</p>
             <div class="producto-contenedor-titulo">
                 <p class="producto-nombre">${producto.modelo}</p>
 
@@ -260,6 +302,7 @@ function carrito() {
                 imagen: producto.querySelector(".imagen_producto").src,
                 nombre: producto.querySelector(".producto-nombre").textContent,
                 precio: (producto.querySelector(".monto").textContent),
+                tipo: (producto.querySelector(".producto-tipo").textContent),
                 talle: talleSeleccionado,
                 cantidad: 1
             }
@@ -279,17 +322,19 @@ function carrito() {
         if (e.target.classList.contains("eliminar-producto")) {
             const productoId = e.target.getAttribute("data-id");
             const talleProducto = e.target.getAttribute("data-talle");
+            const tipoProducto = e.target.getAttribute("data-tipo");
             const productoEliminado = e.target.closest('.carrito-li'); // Buscar el contenedor del producto eliminado
             const cantidadProductoEliminado = parseInt(productoEliminado.querySelector('.cantidad').textContent);
             const precioProductoEliminado = parseFloat(productoEliminado.querySelector(".precio").textContent.replace(/[^\d]/g, ''));
-            articulosCarrito = articulosCarrito.filter(articulo => !(articulo.id === productoId && articulo.talle === talleProducto));
-    
+
+            articulosCarrito = articulosCarrito.filter(articulo => !(articulo.id === productoId && articulo.talle === talleProducto && articulo.tipo === tipoProducto));
+
             // Restar el precio del producto eliminado multiplicado por la cantidad eliminada del precio total
             precioTotal -= (precioProductoEliminado * cantidadProductoEliminado);
             let precioFormateado = precioTotal.toLocaleString('es-AR');
             precioTotalHTML.textContent = precioFormateado;
             carritoHTML();
-
+            sincronizarStorage();
             actualizarMensajeWpp();
             generarEnlaceWpp();
         }
@@ -340,7 +385,7 @@ function carrito() {
                 </div>
                 <div class="contenedor-producto-derecha">
                     <div class="precio">${producto.precio}</div>
-                    <i data-id="${producto.id}" data-talle="${producto.talle}" class="eliminar-producto fa-solid fa-trash"></i>
+                    <i data-id="${producto.id}" data-talle="${producto.talle}" data-tipo="${producto.tipo}" class="eliminar-producto fa-solid fa-trash"></i>
                 </div>
             `;
 
