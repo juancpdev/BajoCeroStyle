@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     menuMobile();
     filtroProductos();
     productos();
-    carrito();
 });
 
 function dolar() {
@@ -72,7 +71,8 @@ function menuMobile() {
 }
 
 function filtroProductos() {
-    let productos = stock;
+    
+    let productosFiltrados = stock;
     let filtrados = [];
 
     // Filtrar Producto por tipo
@@ -86,23 +86,25 @@ function filtroProductos() {
         const filtro = e.target.dataset.tipo;
 
         if(filtro !== "") {
-            filtrados = productos.filter( producto => producto.tipo === filtro);
+            filtrados = productosFiltrados.filter( producto => producto.tipo === filtro);
         } else {
             filtrados = [];
         }
         mostrarProductos();
+
     }
 
     function mostrarProductos() {
-        //limpiarProductos();
+        limpiarProductos();
     
-        const arrayLenght = filtrados.length ? filtrados : productos;
-        console.log(arrayLenght);
-
+        const arrayLenght = filtrados.length ? filtrados : productosFiltrados;
+        dolar();
+        productos(arrayLenght);
+        
     }
     
     function limpiarProductos() {
-        const contenedor = document.querySelector("#listado-tareas");
+        const contenedor = document.querySelector(".contenedor_productos");
     
         while(contenedor.firstChild) {
             contenedor.removeChild(contenedor.firstChild);
@@ -111,13 +113,13 @@ function filtroProductos() {
 }
 
 
-
-function productos() {
-    const productos = stock;
+function productos(filtrado = []) { // Ahora acepta un parámetro opcional filtrado
 
     let htmlVista = "";
 
-    productos.forEach((producto) => {
+    const productosMostrar = filtrado.length ? filtrado : stock; // Usamos el filtrado si está presente
+
+    productosMostrar.forEach((producto) => {
         const marcaHTML = producto.marca ? `<p class="producto-marca">${producto.marca}</p>` : '';
 
         // Convertimos el array de talles en botones
@@ -166,19 +168,7 @@ function productos() {
     botonesTalle.forEach((boton) => {
         boton.addEventListener('click', seleccionarTalle);
     });
-}
 
-function seleccionarTalle(e) {
-    const botonesTalle = document.querySelectorAll('.boton_talle');
-    // Marcamos el botón de talle seleccionado
-    botonesTalle.forEach((boton) => {
-        boton.classList.remove('talle_seleccionado');
-    });
-    const botonSeleccionado = e.target;
-    botonSeleccionado.classList.add('talle_seleccionado');
-}
-
-function carrito() {
     const iconoCarrito = document.querySelectorAll(".iconoCarrito");
     const carritoDeCompras = document.querySelector(".carritodecompras");
     const carritoCerrar = document.querySelectorAll(".cerrar-carrito");
@@ -235,18 +225,24 @@ function carrito() {
 
     // Función para generar el enlace de WhatsApp con el mensaje personalizado
     function generarEnlaceWpp() {
-        const numeroWhatsApp = "3517866925";
+        const numeroWhatsApp = "3854444054";
         const enlaceWhatsApp = `https://wa.me/${numeroWhatsApp}/?text=${encodeURIComponent(mensajeWpp)}`;
         realizarPedido.href = enlaceWhatsApp;
     }
 
-    function abrirCarrito() {
+    function abrirCarrito(e) {
+        console.log(e.target);
         carritoDeCompras.classList.add("carrito-abierto");
         const fondoOverlay = document.createElement('div');
+        const contenedorFondo = document.querySelector(".contenedor-overlay");
         fondoOverlay.classList.add('fondo-overlay');
+        
+        while(contenedorFondo.firstChild) {
+            contenedorFondo.removeChild(contenedorFondo.firstChild);
+        }
 
-        document.body.appendChild(fondoOverlay);
-        document.body.classList.add('no-scroll');
+        contenedorFondo.appendChild(fondoOverlay);
+        contenedorFondo.classList.add('no-scroll');
 
         fondoOverlay.addEventListener("click", cerrarCarrito);
     }
@@ -460,4 +456,14 @@ function carrito() {
         }
     }
 
+
+    function seleccionarTalle(e) {
+        const botonesTalle = document.querySelectorAll('.boton_talle');
+        // Marcamos el botón de talle seleccionado
+        botonesTalle.forEach((boton) => {
+            boton.classList.remove('talle_seleccionado');
+        });
+        const botonSeleccionado = e.target;
+        botonSeleccionado.classList.add('talle_seleccionado');
+    }
 }
