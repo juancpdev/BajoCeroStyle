@@ -78,23 +78,26 @@ function filtroProductos() {
     // Filtrar Producto por tipo
     const filtros = document.querySelectorAll('.categorias');
     const filtrosHijos = document.querySelectorAll('.categorias p');
-
+    const spinner = document.querySelector(".spinner-contenedor");
+    
     filtros.forEach( tipo => {
         tipo.addEventListener('click', filtrarProducto);
     })
     
     function filtrarProducto(e) {
         const filtro = e.target.dataset.tipo;
-
-        // Eliminar la clase 'activo' de todos los elementos
-  
+        
+        if (e.target.classList.contains('activo')) {
+            return;
+        }
+        
         filtrosHijos.forEach(tipo => {
             tipo.classList.remove('activo');
         });
-
+        
         // Agregar la clase 'activo' al elemento clicado
         e.target.classList.add('activo');
-
+        
         if(filtro !== "") {
             filtrados = productosFiltrados.filter( producto => producto.tipo === filtro);
         } else {
@@ -105,11 +108,17 @@ function filtroProductos() {
     }
 
     function mostrarProductos() {
-        limpiarProductos();
-    
+        spinner.classList.add("spinner-activo");
+        console.log(spinner);
         const arrayLenght = filtrados.length ? filtrados : productosFiltrados;
-        dolar();
-        productos(arrayLenght);
+        
+        setTimeout(() => {
+            spinner.classList.remove("spinner-activo");
+            console.log(spinner);
+            dolar();
+            limpiarProductos();
+            productos(arrayLenght);
+        }, 500);
         
     }
     
