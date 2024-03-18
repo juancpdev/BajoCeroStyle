@@ -162,11 +162,11 @@
         left: -100rem;
         transition: left 0.3s ease-in-out; 
         z-index: 10000; 
-        
+
         @include m.tablet {
             width: 50rem;
         }
-
+            
         .cerrar-menu {
             padding: 2rem;
             text-align: end;
@@ -176,21 +176,63 @@
                 color: rgb(77, 77, 77);
             }
         }
-    }
+        .contenido-menu {
+            position: relative;
 
-    .carritodecompras {
-        overflow-x: hidden;
-        position: fixed;
-        background-color: white;
-        color: black;
-        height: 100%;
-        width: 100%;
-        right: -100rem;
-        transition: right 0.4s ease-in-out; 
-        z-index: 10000;
-        @include m.tablet {
-            width: 50rem;
+            .menu-enlaces {
+                
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2rem;
+                    padding: 0 3rem;
+                    
+                    li {
+                        list-style: none;
+                        
+                        a {
+                            color: black;
+                        }
+                    }
+                }
+            }
+
+            .contenedor-redes {
+                position: fixed;
+                bottom: 0;
+                width: 80%;
+                background-color: #00123a;
+                height: 5rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 4rem;
+
+                @include m.tablet {
+                    width: 50rem;
+                }
+
+                i {
+                    color: white;
+                    font-size: 2.3rem;
+                }
+            }
         }
+    }
+        
+        .carritodecompras {
+            overflow-x: hidden;
+            position: fixed;
+            background-color: white;
+            color: black;
+            height: 100%;
+            width: 100%;
+            right: -100rem;
+            transition: right 0.4s ease-in-out; 
+            z-index: 10000;
+            @include m.tablet {
+                width: 50rem;
+            }
 
         .cerrar-carrito-contenedor {
             padding: 2rem;
