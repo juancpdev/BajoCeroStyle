@@ -77,13 +77,23 @@ function filtroProductos() {
 
     // Filtrar Producto por tipo
     const filtros = document.querySelectorAll('.categorias');
+    const filtrosHijos = document.querySelectorAll('.categorias p');
 
     filtros.forEach( tipo => {
         tipo.addEventListener('click', filtrarProducto);
     })
-
+    
     function filtrarProducto(e) {
         const filtro = e.target.dataset.tipo;
+
+        // Eliminar la clase 'activo' de todos los elementos
+  
+        filtrosHijos.forEach(tipo => {
+            tipo.classList.remove('activo');
+        });
+
+        // Agregar la clase 'activo' al elemento clicado
+        e.target.classList.add('activo');
 
         if(filtro !== "") {
             filtrados = productosFiltrados.filter( producto => producto.tipo === filtro);
@@ -118,8 +128,9 @@ function productos(filtrado = []) { // Ahora acepta un parámetro opcional filtr
     let htmlVista = "";
 
     const productosMostrar = filtrado.length ? filtrado : stock; // Usamos el filtrado si está presente
-
+    
     productosMostrar.forEach((producto) => {
+       // console.log(producto.tipo);
         const marcaHTML = producto.marca ? `<p class="producto-marca">${producto.marca}</p>` : '';
 
         // Convertimos el array de talles en botones
@@ -231,7 +242,6 @@ function productos(filtrado = []) { // Ahora acepta un parámetro opcional filtr
     }
 
     function abrirCarrito(e) {
-        console.log(e.target);
         carritoDeCompras.classList.add("carrito-abierto");
         const fondoOverlay = document.createElement('div');
         const contenedorFondo = document.querySelector(".contenedor-overlay");

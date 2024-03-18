@@ -53,7 +53,7 @@
             }
 
             .categorias {
-                background-color: #025294;
+                background-color: #0273cf;
                 text-align: center;
                 width: 100%;
                 border-radius: 1rem;
@@ -61,6 +61,11 @@
 
                 @include m.tablet {
                     width: 80%;
+                }
+
+                .activo {
+                    border-radius: 1rem;
+                    background-color: #003561;
                 }
 
                 p {
