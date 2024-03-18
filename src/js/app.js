@@ -109,12 +109,10 @@ function filtroProductos() {
 
     function mostrarProductos() {
         spinner.classList.add("spinner-activo");
-        console.log(spinner);
         const arrayLenght = filtrados.length ? filtrados : productosFiltrados;
         
         setTimeout(() => {
             spinner.classList.remove("spinner-activo");
-            console.log(spinner);
             dolar();
             limpiarProductos();
             productos(arrayLenght);
@@ -139,12 +137,11 @@ function productos(filtrado = []) { // Ahora acepta un parámetro opcional filtr
     const productosMostrar = filtrado.length ? filtrado : stock; // Usamos el filtrado si está presente
     
     productosMostrar.forEach((producto) => {
-       // console.log(producto.tipo);
         const marcaHTML = producto.marca ? `<p class="producto-marca">${producto.marca}</p>` : '';
 
         // Convertimos el array de talles en botones
         const botonesTalles = producto.talles.map((talle) => {
-            return `<button class="boton_talle" data-talle="${talle}">${talle}</button>`;
+            return `<div><button class="boton_talle" data-tipo="${producto.tipo}" data-talle="${talle}">${talle}</button></div>`;
         }).join('');
         htmlVista += `
         <div class="productos">
@@ -168,9 +165,11 @@ function productos(filtrado = []) { // Ahora acepta un parámetro opcional filtr
             </div>
             
             <div class="talles-contenedor">
-                <p class="titulo">Elige un talle</p>
+                <p class="titulo">Elige un talle (AR)</p>
                 <div class="contenedor-botones-talle">
-                    ${botonesTalles}
+                    <div class="contenedor-botones-talle-hijo">
+                        ${botonesTalles}
+                    </div>
                 </div>
             </div>
             
@@ -477,7 +476,6 @@ function productos(filtrado = []) { // Ahora acepta un parámetro opcional filtr
 
 
     function seleccionarTalle(e) {
-        const botonesTalle = document.querySelectorAll('.boton_talle');
         // Marcamos el botón de talle seleccionado
         botonesTalle.forEach((boton) => {
             boton.classList.remove('talle_seleccionado');
@@ -485,4 +483,63 @@ function productos(filtrado = []) { // Ahora acepta un parámetro opcional filtr
         const botonSeleccionado = e.target;
         botonSeleccionado.classList.add('talle_seleccionado');
     }
+
+        // Agregar un event listener para los botones de talle
+        botonesTalle.forEach((boton) => {
+            boton.addEventListener('mouseover', mostrarInfoExtra);
+            boton.addEventListener('mouseout', ocultarInfoExtra);
+        });
+    
+        function mostrarInfoExtra(e) {
+            const talleSeleccionado = e.target.textContent;
+            const tipoSeleccionado = e.target.dataset.tipo;
+            const infoExtra = obtenerInfoExtra(talleSeleccionado, tipoSeleccionado);
+            // Crear un elemento div para mostrar la información extra
+            const infoExtraDiv = document.createElement('div');
+            infoExtraDiv.classList.add('info-extra');
+            const infoExtraText = document.createElement('p');
+            infoExtraText.textContent = infoExtra;
+            infoExtraDiv.appendChild(infoExtraText);
+            // Agregar el elemento div al DOM, por ejemplo, como hijo del botón de talle
+            e.target.parentElement.appendChild(infoExtraDiv);
+        }
+    
+        function ocultarInfoExtra(e) {
+            // Remover el elemento div de información extra al salir del botón de talle
+            const infoExtraDiv = e.target.parentElement.querySelector('.info-extra');
+            if (infoExtraDiv) {
+                infoExtraDiv.remove();
+            }
+        }
+    
+        function obtenerInfoExtra(talle, tipoSeleccionado) {
+            let medidas = {};
+
+            if (tipoSeleccionado === 'zapatilla') {
+                medidas = {
+                    '39': 'US: 7 \nCM: 25',
+                    '40': 'US: 8 \nCM: 26',
+                    '41': 'US: 8.5 \nCM: 26.5',
+                    '42': 'US: 9.5 \nCM: 27.5',
+                    '43': 'US: 10 \nCM: 28',
+                    '44': 'US: 11 \nCM: 29',
+                };
+            } else if (tipoSeleccionado === 'remera') {
+                medidas = {
+                    'S': 'Largo: 72 cm \nAncho: 62 cm',
+                    'M': 'Largo: 74 cm \nAncho: 64 cm',
+                    'L': 'Largo: 74 cm \nAncho: 68 cm',
+                    'XL': 'Largo: 76 cm \nAncho: 70 cm',
+                };
+            } else if (tipoSeleccionado === 'buzo') {
+                medidas = {
+                    'M': 'Largo: 68 cm \nAncho: 61 cm',
+                    'L': 'Largo: 71 cm \nAncho: 63 cm',
+                    'XL': 'Largo: 74 cm \nAncho: 65 cm',
+                    'XXL': 'Largo: 78 cm \nAncho: 64 cm',
+                };
+            }
+            // Obtener las medidas para el talle dado
+            return medidas[talle];
+        }
 }

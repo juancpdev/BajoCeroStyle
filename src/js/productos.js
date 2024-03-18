@@ -7,7 +7,7 @@ const stock = [
         modelo: 'Dunk Off-White Lot 1',
         precio: 100,
         img: "build/img/nikedunklot1.webp",
-        talles: [37, 38, 39],
+        talles: [39, 40, 41],
     },
     {
         id: 2,
@@ -16,7 +16,7 @@ const stock = [
         modelo: 'Dunk Lilac',
         precio: 95,
         img: "build/img/nikedunklowlilac.webp",
-        talles: [37, 38, 39],
+        talles: [42, 43, 44],
     },
     {
         id: 3,
@@ -132,7 +132,7 @@ const stock = [
         modelo: 'HOODIE COALLITION WHITE',
         precio: 40,
         img: "build/img/3-ad.webp",
-        talles: ["M"],
+        talles: ["L"],
     },
     {
         id: 4,
@@ -148,7 +148,7 @@ const stock = [
         modelo: 'HOODIE COALLITION PINK',
         precio: 40,
         img: "build/img/5-ad.webp",
-        talles: ["XL"],
+        talles: ["XXL"],
     },
 
     // Remeras
