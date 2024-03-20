@@ -39,5 +39,18 @@ const stock = [
         ],
         talles: [42, 43, 44],
     },
+    {
+        id: 3,
+        tipo: 'zapatilla',
+        marca: 'Adidas',
+        modelo: 'Forum Pink Bad Bunny',
+        precio: 100,
+        img: "build/img/zapas-forum-pink (2).webp",
+        imagenesExtras: [
+            "build/img/zapas-forum-pink.webp",
+            "build/img/zapas-forum-pink (3).webp"
+        ],
+        talles: [42, 43, 44],
+    },
   
 ];

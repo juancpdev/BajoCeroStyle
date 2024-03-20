@@ -157,8 +157,8 @@ function productos(filtrado = []) { // Ahora acepta un parámetro opcional filtr
                 <p class="montoUSD">U$D</p>
                 <p class="montoUSD preciodolar">${producto.precio}</p>
             </div>
-            <div class="contenedor-imagen-producto">     
-                <img src="${producto.img}" class="imagen_producto" onclick="openModal('producto${i+1}')" alt="Imagen del producto"/>
+            <div class="contenedor-imagen-producto" onclick="openModal('producto${i+1}')">     
+                <img src="${producto.img}" class="imagen_producto" alt="Imagen del producto"/>
                 <div class="secondary-images">
                     <img class="img-secu producto${i+1}-image" src="${producto.img}"/>
                     <img class="img-secu producto${i+1}-image" src="${producto.imagenesExtras[0]}"/>
@@ -566,44 +566,39 @@ let currentProject = "";
 let currentImageIndex = 0;
 
 function openModal(project) {
-  modal.style.display = "grid";
-  currentProject = project;
-  currentImageIndex = 0;
-  showImage(currentImageIndex);
-  showSecondaryImages();
-  document.body.classList.add('no-scroll');
-}
-
-function showSecondaryImages() {
-  let secondaryImages = document.querySelectorAll(".secondary-images");
-  secondaryImages.forEach(secundaria => {
-    secundaria.style.display = "none";
-  });
+    modal.style.display = "grid";
+    currentProject = project;
+    currentImageIndex = 0;
+    showImage(currentImageIndex);
+    document.body.classList.add('no-scroll');
+    setTimeout(() => {
+        modal.classList.add("mostrar"); // Agregar la clase mostrar después de un breve retraso para que la transición se ejecute correctamente
+    }, 100); // Se puede ajustar el tiempo según sea necesario
 }
 
 function closeModal() {
-  modal.style.display = "none";
-  document.body.classList.remove('no-scroll');
+    modal.style.display = "none";
+    document.body.classList.remove('no-scroll');
+    setTimeout(() => {
+        modal.classList.remove("mostrar"); // Agregar la clase mostrar después de un breve retraso para que la transición se ejecute correctamente
+    }, 100);
 }
 
 function plusSlides(n) {
-  showImage(currentImageIndex += n);
+    showImage(currentImageIndex += n);
 }
 
 function showImage(n) {
-  let images = document.querySelectorAll("." + currentProject + "-image");
-  if (images.length === 0) {
-    console.error("No se encontraron imágenes asociadas al proyecto: " + currentProject);
-    return;
-  }
-  if (n >= images.length) {
-    currentImageIndex = 0; // Vuelve a la primera imagen secundaria
-  }
-  if (n < 0) {
-    currentImageIndex = images.length - 1; // Muestra la última imagen secundaria
-  }
-  modalImg.src = images[currentImageIndex].src;
+    let images = document.querySelectorAll("." + currentProject + "-image");
+    if (images.length === 0) {
+        console.error("No se encontraron imágenes asociadas al proyecto: " + currentProject);
+        return;
+    }
+    if (n >= images.length) {
+        currentImageIndex = 0; // Vuelve a la primera imagen secundaria
+    }
+    if (n < 0) {
+        currentImageIndex = images.length - 1; // Muestra la última imagen secundaria
+    }
+    modalImg.src = images[currentImageIndex].src;
 }
-
-
-        

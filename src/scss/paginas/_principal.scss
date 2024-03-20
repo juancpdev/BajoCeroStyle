@@ -325,6 +325,7 @@
 
                 .contenedor-imagen-producto {
                     position: relative;
+                    cursor: pointer;
                     
                     .secondary-images {
                         width: 5rem;
@@ -377,26 +378,34 @@
 
 /* Estilos básicos para la galería */
 .secondary-images {
-    display: none;
-  }
+    opacity: 0;
+    transform: scale(0.1); /* Escala inicial pequeña */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transición suave de opacidad y transform */
+}
+
+.mostrar {
+    opacity: 1;
+    transform: scale(1); /* Escala completa */
+}
+
   
-  .contenedor-img {
+.contenedor-img {
     height: 100%;
     display: grid;
     place-items: center;
-  }
+}
   
-  .contenedor-img img{
+.contenedor-img img{
     width: 100rem;
     height: auto;
     display: block;
-  }
+}
   
-  .gallery {
+.gallery {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-  }
+}
   
   .project {
     margin: 10px;
@@ -436,7 +445,6 @@
     top: 15px;
     right: 35px;
     font-size: 40px;
-    font-weight: bold;
     cursor: pointer;
   }
   
@@ -446,13 +454,19 @@
     position: absolute;
     top: 50%;
     width: auto;
-    padding: 16px;
+    padding: 14px;
     margin-top: -22px;
     color: white;
     font-weight: bold;
     font-size: 18px;
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
+
+    @include m.tablet {
+        padding: 0rem;
+        margin: 0 3rem;
+        font-size: 3rem;
+    }
   }
   
   .prev {
@@ -462,3 +476,4 @@
   .next {
     right: 0;
   }
+  
