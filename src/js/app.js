@@ -5,6 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
     productos();
 });
 
+function cerrarLightbox() {
+    console.log("asdasd");
+    const lightbox = document.getElementById('lightbox');
+    lightbox.classList.add('no-display');
+}
+
+
 function dolar() {
     // Definir la URL de la API
     const apiUrl = 'https://dolarapi.com/v1/dolares/blue';
@@ -116,7 +123,7 @@ function filtroProductos() {
             dolar();
             limpiarProductos();
             productos(arrayLenght);
-        }, 500);
+        }, 300);
         
     }
     
@@ -136,7 +143,8 @@ function productos(filtrado = []) { // Ahora acepta un parámetro opcional filtr
 
     const productosMostrar = filtrado.length ? filtrado : stock; // Usamos el filtrado si está presente
     
-    productosMostrar.forEach((producto) => {
+    productosMostrar.forEach((producto, i) => {
+
         const marcaHTML = producto.marca ? `<p class="producto-marca">${producto.marca}</p>` : '';
 
         // Convertimos el array de talles en botones
@@ -150,7 +158,12 @@ function productos(filtrado = []) { // Ahora acepta un parámetro opcional filtr
                 <p class="montoUSD preciodolar">${producto.precio}</p>
             </div>
             <div class="contenedor-imagen-producto">     
-                <img src="${producto.img}" class="imagen_producto">
+                <img src="${producto.img}" class="imagen_producto" onclick="openModal('producto${i+1}')" alt="Imagen del producto"/>
+                <div class="secondary-images">
+                    <img class="img-secu producto${i+1}-image" src="${producto.img}"/>
+                    <img class="img-secu producto${i+1}-image" src="${producto.imagenesExtras[0]}"/>
+                    <img class="img-secu producto${i+1}-image" src="${producto.imagenesExtras[1]}"/>
+                </div>
                 ${marcaHTML}
             </div>
             <p class="producto-tipo no-display">${producto.tipo}</p>
@@ -542,4 +555,55 @@ function productos(filtrado = []) { // Ahora acepta un parámetro opcional filtr
             // Obtener las medidas para el talle dado
             return medidas[talle];
         }
+        
 }
+
+// Galeria proyectos
+let modal = document.getElementById("modal");
+let modalImg = document.getElementById("modal-image");
+
+let currentProject = "";
+let currentImageIndex = 0;
+
+function openModal(project) {
+  modal.style.display = "grid";
+  currentProject = project;
+  currentImageIndex = 0;
+  showImage(currentImageIndex);
+  showSecondaryImages();
+  document.body.classList.add('no-scroll');
+}
+
+function showSecondaryImages() {
+  let secondaryImages = document.querySelectorAll(".secondary-images");
+  secondaryImages.forEach(secundaria => {
+    secundaria.style.display = "none";
+  });
+}
+
+function closeModal() {
+  modal.style.display = "none";
+  document.body.classList.remove('no-scroll');
+}
+
+function plusSlides(n) {
+  showImage(currentImageIndex += n);
+}
+
+function showImage(n) {
+  let images = document.querySelectorAll("." + currentProject + "-image");
+  if (images.length === 0) {
+    console.error("No se encontraron imágenes asociadas al proyecto: " + currentProject);
+    return;
+  }
+  if (n >= images.length) {
+    currentImageIndex = 0; // Vuelve a la primera imagen secundaria
+  }
+  if (n < 0) {
+    currentImageIndex = images.length - 1; // Muestra la última imagen secundaria
+  }
+  modalImg.src = images[currentImageIndex].src;
+}
+
+
+        
