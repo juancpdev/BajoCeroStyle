@@ -1,54 +1,46 @@
-@use 'base/variables' as v;
 @use 'base/mixins' as m;
+@use 'base/variables' as v;
 
-
-.footer {
-    background-color: #141414;
-    padding: 3rem 5rem;
-    display: grid;
+footer {
     margin-top: 10rem;
-
-    .caja_footer {
-        width: min(95%, 120rem);
-        margin: 0 auto;
-        font-size: 1.8rem;
-        display: grid;
-        gap: 3rem;
-        margin-bottom: 10rem;
-        justify-content: center;
-
-        a {
-            color: #b1b1b1;
-        }
-
-        p {
-            color: #ffffff;
-        }
-
-        .bajocero {
-            display: grid;
-        }
-
-        .ofertas {
-            margin-bottom: 2rem;
-        }
-
-        .caja_imagen_footer {
-            display: block;
+    background-color: #00081a;
+    border-top: 0.2rem solid #014379;
+    height: 100%;
+    
+   .footer {
+        .contenedor-footer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            justify-items: center;
             text-align: center;
-            box-sizing: border-box;
+            .logo {
+                width: 5rem;
+                cursor: pointer;
+                padding: 3rem 0;
+            }
+        }
+        .contenedor-redes {
 
-            .imagen_footer {
-                box-sizing: border-box;
-                height: auto;
-                max-width: 100%;
-                width: 40rem;
-
-                p {
-                    margin: 0 auto;
-                    font-size: 1.5rem;
-                    box-sizing: border-box;
+            .redes {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                i {
+                    color: #98d1ff;
+                    font-size: 2.5rem;
                 }
+            }
+        }
+        
+        .derechos {
+            color: white;
+            padding-bottom: 1rem;
+            font-size: 1.2rem;
+            text-align: center;
+            @include m.tablet {
+                font-size: 1.3rem;
             }
         }
     }

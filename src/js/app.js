@@ -5,6 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     productos();
 });
 
+// año copy
+const currentYear = new Date().getFullYear();
+document.getElementById('year').textContent = currentYear;
+
 function cerrarLightbox() {
     console.log("asdasd");
     const lightbox = document.getElementById('lightbox');
@@ -193,7 +197,9 @@ function productos(filtrado = []) { // Ahora acepta un parámetro opcional filtr
     });
 
     const contenedor = document.getElementById("contenedorProductos");
-    contenedor.innerHTML = htmlVista;
+    if(contenedor) {
+        contenedor.innerHTML = htmlVista;
+    }
 
     // Agregamos un event listener para los botones de talle
     const botonesTalle = document.querySelectorAll('.boton_talle');

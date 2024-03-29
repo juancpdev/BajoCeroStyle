@@ -6,10 +6,10 @@ const stock = [
         marca: 'Adidas',
         modelo: 'Yezzy Boost 350 Oreo',
         precio: 100,
-        img: "build/img/zapas-yeezy-oreo.webp",
+        img: "build/img/prueba.webp",
         imagenesExtras: [
-            "build/img/zapas-yeezy-oreo (2).webp",
-            "build/img/zapas-yeezy-oreo (3).webp"
+            "build/img/prueba (2).webp",
+            "build/img/prueba (4).webp"
         ],
         talles: [42, 43, 44],
     },
