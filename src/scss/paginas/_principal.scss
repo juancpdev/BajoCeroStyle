@@ -3,6 +3,7 @@
 
 
 .principal {
+    margin-bottom: 10rem;
     .caja_titulo_bajocero {
         background-image: url(../../../build/img/fondo.png);
         background-repeat: no-repeat;
@@ -328,8 +329,8 @@
                     cursor: pointer;
                     
                     .secondary-images {
-                        width: 5rem;
-                        height: 5rem;
+                        height: 0;
+                        width: 0;
 
                         img {
                             width: 100%;
@@ -436,7 +437,6 @@
     margin: auto;
     display: block;
     max-width: 80%;
-    max-height: 80%;
   }
   
   .close {

@@ -1,8 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
+// Verificar si estamos en el index.html antes de ejecutar las funciones específicas
+if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
+    // Ejecutar las funciones específicas para index.html
     dolar();
     menuMobile();
     filtroProductos();
     productos();
+}
 });
 
 // año copy
@@ -263,7 +267,7 @@ function productos(filtrado = []) { // Ahora acepta un parámetro opcional filtr
 
     // Función para generar el enlace de WhatsApp con el mensaje personalizado
     function generarEnlaceWpp() {
-        const numeroWhatsApp = "3854444054";
+        const numeroWhatsApp = "543854448265";
         const enlaceWhatsApp = `https://wa.me/${numeroWhatsApp}/?text=${encodeURIComponent(mensajeWpp)}`;
         realizarPedido.href = enlaceWhatsApp;
     }
@@ -417,7 +421,10 @@ function productos(filtrado = []) { // Ahora acepta un parámetro opcional filtr
                     </div>
                 </div>
                 <div class="contenedor-producto-derecha">
-                    <div class="precio">${producto.precio}</div>
+                    <div class="contenedor-precio-cant">
+                        <p class="unidad">Unidad</p>
+                        <div class="precio">${producto.precio}</div>
+                    </div>
                     <i data-id="${producto.id}" data-talle="${producto.talle}" data-tipo="${producto.tipo}" class="eliminar-producto fa-solid fa-trash"></i>
                 </div>
             `;

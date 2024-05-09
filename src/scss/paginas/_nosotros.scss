@@ -4,7 +4,6 @@
 .nosotros {
 
     .midseccion {
-        margin: 3rem;
         @include m.tablet {
             @include m.contenedor;
         }
@@ -13,12 +12,12 @@
             margin: 6rem 3rem;
 
             h2 {
-                color: #123c49;
+                color: #49b7d8;
                 text-align: center;
             }
     
             p {
-                color: #123c49;
+                color: #49b7d8;
                 text-align: center;
                 font-size: 1.6rem;
             }
@@ -96,8 +95,8 @@
         }
 
         .nosotros1 {
-            padding: 3rem;
-            margin: 5rem 1rem;
+            padding: 0;
+            margin: 5rem 0;
             border-radius: 1rem;
             background: linear-gradient(to right, #102c35, #184b5c);
 
@@ -146,10 +145,10 @@
     }
 
     .nosotros3 {
-        padding: 3rem;
+        padding: 1rem;
         margin: 5rem 1rem;
         border-radius: 1rem;
-        background: linear-gradient(to right, #805300, #be810e);
+        text-align: center;
 
         @include m.tabletXL {
             padding: 0;
@@ -158,19 +157,34 @@
         }
         
         .nosotros3-hijo {
+            min-width: 30rem;
+            margin-bottom: 5rem;
+            padding: 3rem;
+            border-radius: 1rem;
+            background: linear-gradient(to right, #102c35, #184b5c);
+
             @include m.tabletXL {
                 padding: 3rem;
                 border-radius: 1rem;
-                background: linear-gradient(to right, #805300, #be810e);
+                background: linear-gradient(to right, #102c35, #184b5c);
                 transition: all .3s ease;
+                text-align: center;
 
                 &:hover {
                     transform: scale(.97);
-                    box-shadow: #be810e 1px 1px 15px 3px;
+                    box-shadow: v.$principal-claro 1px 1px 15px 3px;
                 }
             }
+
+            .img-contenedor {
+                
+                img {
+                    max-width: 100%;
+                }
+            }
+
             h3 {
-                color: #ffd27e;
+                color: #49b7d8;
             }
 
             p {
@@ -179,6 +193,10 @@
                 @include m.tablet {
                     font-size: 1.5rem;
                 }
+            }
+
+            img {
+                width: 30rem;
             }
         }
     }
@@ -200,6 +218,20 @@
             font-size: 1.4rem;
             @include m.tablet {
                 font-size: 1.5rem;
+            }
+        }
+    }
+
+    .contenedor-redes {
+
+        .redes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            i {
+                color: #98d1ff;
+                font-size: 2.5rem;
             }
         }
     }
