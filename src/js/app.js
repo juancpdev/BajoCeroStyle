@@ -3,10 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
 if (window.location.pathname === '/index.html' || window.location.pathname === '/') {
     // Ejecutar las funciones específicas para index.html
     dolar();
-    menuMobile();
+    
     filtroProductos();
     productos();
 }
+menuMobile();
 });
 
 // año copy

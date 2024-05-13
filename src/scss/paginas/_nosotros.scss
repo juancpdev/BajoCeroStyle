@@ -6,6 +6,7 @@
     .midseccion {
         @include m.tablet {
             @include m.contenedor;
+            padding-top: 3rem;
         }
 
         .caja_titulo {
@@ -161,12 +162,12 @@
             margin-bottom: 5rem;
             padding: 3rem;
             border-radius: 1rem;
-            background: linear-gradient(to right, #102c35, #184b5c);
+            background: linear-gradient(90deg, rgba(175, 199, 255, 0), rgba(107, 151, 255, .445));
+            box-shadow: 0 0 3px 1px rgba(80, 133, 255, .288);
 
             @include m.tabletXL {
                 padding: 3rem;
                 border-radius: 1rem;
-                background: linear-gradient(to right, #102c35, #184b5c);
                 transition: all .3s ease;
                 text-align: center;
 
